@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- font-family: 'PT Sans', sans-serif; -->
+</head>
+
+<body>
+
+    <!-- <nav id="navbar">
+        <div id="logo"> -->
+    <!-- Just for covering space  -->
+    <!-- </div> -->
+
+    <!-- <ul> -->
+    <!-- <li class="item"> <a href="#home">Home </a> </li> -->
+    <!-- <li class="item"> <a href="#fakenews">Introduction </a> </li> -->
+    <!-- <li class="item"> <a href="#detection">Detection </a> </li> -->
+    <!-- <li class="item"> <a href="#stats">Statistics </a> </li> -->
+    <!-- <li class="item"> <a href="#about_us">About us </a> </li> -->
+    <!-- <li class="item"> <a href="#contact_us">Contact us</a> </li> -->
+    <!-- </ul> -->
+
+    <!-- </nav> -->
+
+    <section id="home">
+        <h1 class="h-primary">Don't Believe the Hype: <br> Unmask Fake News with <br> Our Detection Website!</h1>
+        <a href="#detection">
+            <button type="button" style=" background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;">Detection</button>
+        </a>
+    </section>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+    <section id="detection">
+        <div class="result" id="fake">
+            <h2>Is it Fake?</h2>
+            <div class="result_box">
+                <p id="fakepara">Yes, it is Fake*</p>
+            </div>
+            <img src="{{url_for('static', filename='Assets/Images/fact-fake.png')}}" alt="">
+        </div>
+        <div id=detectbox>
+            <h1>Detection</h1>
+            <form action="" method="POST">
+                <div class="detection-box ">
+                    <div class="textbox">
+
+                        <input type="url" placeholder="Enter url" name="NewsUrl" value="">
+
+                    </div>
+                    <button class="btn" name="Submit_B" type="submit" value="URLnews">Submit</button>
+                    <h2>OR</h2>
+                </div>
+                <div class="detection-box">
+                    <div class="textbox">
+
+                        <input type="text" placeholder="Enter Content" name="content" value="">
+
+                    </div>
+                    <button class="btn" name="Submit_B" type="submit" value="newsContent">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="result" id="real">
+            <h2>Is it Real?</h2>
+            <div class="result_box">
+                <p id="realpara">Yes, it is Real*</p>
+            </div>
+            <img src="{{url_for('static', filename='Assets/Images/fact-ture.png')}}" alt="">
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+    {% if scroll %}
+    <script>
+        document.getElementById('{{ scroll }}').scrollIntoView();
+    </script>
+    {% endif %}
+
+</body>
+
+<script type="text/javascript" src="{{url_for('static', filename='JavaScript/detect.js')}}"></script>
+<script type="text/javascript">
+    {% if (prediction)== [1] %}
+    showreal();
+    {% elif(prediction) == [0] %}
+    showfake();
+    {% endif %}
+</script>
+
+</html>
